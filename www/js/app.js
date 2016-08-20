@@ -74,19 +74,34 @@ function add()
     
 }
 
+function remove()
+{
+    var id = this.getAttribute("id");
+    var arrary = getArray();
+    arrary.splice(id.1);
+    localStorage.getItem("DoTask", JSON.stringify(arrary));
+    show();
+    return false;
+}
+
 function show()
 {
     var array = getArray();
-    var htmlFormat = "<ul>";
+    var htmlFormat = "<ol>";
     
     for(var i=0; i<array.length; i++)
         {
-            htmlFormat += "<li>"+array[i]+"</li>";
+            htmlFormat += "<li>"+array[i]+"</li>"<button class='remove' id='"+i+"'>cancel</button>;
             
         }
-    htmlFormat += "</ul>";
+    htmlFormat += "</ol>";
     
    document.getElementById("taskList").innerHTML = htmlFormat;
+    var buttons = document.getElementsByClassName("remove");
+    for(x = 0; x<buttons.length; x++)
+        {
+            buttons[x].addEventListener("click",remove);
+        }
 }
 
 
